@@ -21,7 +21,8 @@
         initScrollAnimations();
 
         $('.scroll-indicator').on('click', function() {
-            $('html, body').animate({ scrollTop: $('#about').offset().top }, 800);
+            const $about = $('#about');
+            if ($about.length) $('html, body').animate({ scrollTop: $about.offset().top }, 800);
         });
     });
 
@@ -42,14 +43,16 @@
         const $line1 = $('.hero-headline .line-1');
         const $line2 = $('.hero-headline .line-2');
         const $line3 = $('.hero-headline .line-3');
+        const $line4 = $('.hero-headline .line-4');
         const $subtext = $('.hero-subtext');
         const $badge = $('.coming-soon-badge');
 
         setTimeout(function() { $line1.addClass('visible'); }, 400);
         setTimeout(function() { $line2.addClass('visible'); }, 700);
         setTimeout(function() { $line3.addClass('visible'); }, 1000);
-        setTimeout(function() { $subtext.addClass('visible'); }, 1300);
-        setTimeout(function() { $badge.addClass('visible'); }, 1700);
+        setTimeout(function() { $line4.addClass('visible'); }, 1200);
+        setTimeout(function() { $subtext.addClass('visible'); }, 1500);
+        setTimeout(function() { $badge.addClass('visible'); }, 1900);
     }
 
     /**
@@ -60,10 +63,10 @@
         let lineIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
-        const typeSpeed = 80;
-        const deleteSpeed = 50;
-        const pauseAfterType = 2000;
-        const pauseAfterDelete = 500;
+        const typeSpeed = 120;
+        const deleteSpeed = 100;
+        const pauseAfterType = 1500;
+        const pauseAfterDelete = 400;
 
         function type() {
             const currentLine = HYPE_LINES[lineIndex];
@@ -100,6 +103,7 @@
     function initParallax() {
         const $bgImage = $('#page-bg-image');
         const $overlay = $('#page-bg-overlay');
+        if (!$bgImage.length) return;
 
         // Mouse parallax
         let mouseX = 0, mouseY = 0;
@@ -119,12 +123,14 @@
         });
 
         // Scroll-based overlay: darkens as user scrolls for better contrast
-        $(window).on('scroll', function() {
-            const scrollTop = $(window).scrollTop();
-            const scrollMax = Math.max($(document).height() - $(window).height(), 1);
-            const scrollProgress = Math.min(scrollTop / scrollMax, 1);
-            $overlay.css('opacity', 0.85 + scrollProgress * 0.15);
-        });
+        if ($overlay.length) {
+            $(window).on('scroll', function() {
+                const scrollTop = $(window).scrollTop();
+                const scrollMax = Math.max($(document).height() - $(window).height(), 1);
+                const scrollProgress = Math.min(scrollTop / scrollMax, 1);
+                $overlay.css('opacity', 0.85 + scrollProgress * 0.15);
+            });
+        }
 
         // Mouse movement animation loop
         function updateMouseParallax() {
@@ -185,9 +191,9 @@
             });
         }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
 
-        observer.observe($about[0]);
-        observer.observe($banner[0]);
-        observer.observe($socialLinks[0]);
+        if ($about.length) observer.observe($about[0]);
+        if ($banner.length) observer.observe($banner[0]);
+        if ($socialLinks.length) observer.observe($socialLinks[0]);
 
         const style = document.createElement('style');
         style.textContent = `

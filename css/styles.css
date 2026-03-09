@@ -133,6 +133,16 @@ body {
     transform: translateY(0);
 }
 
+.hero-headline .line.brand {
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+    font-size: 0.45em;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    color: var(--color-accent);
+    margin-top: 0.5rem;
+}
+
 .hero-subtext {
     font-family: var(--font-body);
     font-size: clamp(1rem, 2.5vw, 1.25rem);
@@ -342,6 +352,27 @@ body {
     color: var(--color-text-muted);
 }
 
+.footer-copyright {
+    margin-bottom: 0.5rem;
+}
+
+.footer-powered {
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
+.footer-powered a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: var(--transition-smooth);
+}
+
+.footer-powered a:hover {
+    color: var(--color-accent);
+    opacity: 1;
+}
+
 /* Page Load Fade-in */
 body.page-loaded .hero-content {
     opacity: 1;
@@ -374,5 +405,9 @@ body.page-loaded .hero-content {
         width: 48px;
         height: 48px;
         font-size: 1.25rem;
+    }
+    
+    .hero-headline .line.brand {
+        letter-spacing: 0.2em;
     }
 }

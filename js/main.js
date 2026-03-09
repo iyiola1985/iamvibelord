@@ -63,10 +63,10 @@
         let lineIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
-        const typeSpeed = 160;
-        const deleteSpeed = 130;
-        const pauseAfterType = 1800;
-        const pauseAfterDelete = 600;
+        const typeSpeed = 280;
+        const deleteSpeed = 250;
+        const pauseAfterType = 2200;
+        const pauseAfterDelete = 400;
 
         function type() {
             const currentLine = HYPE_LINES[lineIndex];
